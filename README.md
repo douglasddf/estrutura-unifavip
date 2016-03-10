@@ -3,12 +3,13 @@ Repositório de aulas da disciplina de Estrutura de Dados - UNIFAVIP (**2016.1**
 
 A tabela abaixo mostra os conteúdos trabalhados em cada projeto disponível aqui no **github**. Pose-se baixar e acompanhar. 
 
-<center>![Linear vs Constante](linear-constante.png)</center>
-<center>[Consumo **linear** vs **constante**](#Referências)</center>
+![Linear vs Constante](linear-constante.png)
+
+- [Consumo **linear** vs **constante**](#Referências)
 
 
 
-## Aulas
+## Conteúdo das Aulas
 
 | Aulas  | Conteúdo |
 | ------------- | ------------- |
