@@ -1,2 +1,6 @@
-# estrutura-unifavip
-Repositório de aulas da disciplina de Estrutura de Dados - UNIFAVIP
+# Estrutura Dados (unifavip)
+Repositório de aulas da disciplina de Estrutura de Dados - UNIFAVIP (**2016.1**)
+
+
+
+
