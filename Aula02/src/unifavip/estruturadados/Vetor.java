@@ -11,36 +11,36 @@ package unifavip.estruturadados;
  */
 public class Vetor implements IListaAlunos {
 
-    private Aluno[] alunos = new Aluno[100];
-    private int totalAlunos = 0;
+    private static final int MAXIMO = 100;
+    
+    private Aluno[] alunos = new Aluno[MAXIMO];
+    private int totalDeAlunos = 0;
     
     
     @Override
     public void adicionaAluno(Aluno aluno) {
-        for (int i = 0; i < alunos.length; i++) {
-            
-            if(alunos[i] == null) {
-                // tem espaco
-                alunos[i] = aluno;
-                totalAlunos++;
-                break;
-            }
-            
-        }
+
+        this.garantaEspaco();
+        this.alunos[this.totalDeAlunos] = aluno;
+        this.totalDeAlunos++;
     }
 
     @Override
     public void adicionaAluno(int posicao, Aluno aluno) {
+
+        this.garantaEspaco();
+
+        
         if(!posicaoValida(posicao)) {
             throw new IllegalArgumentException("Posição Inválida!");
         }
-        
-        for (int i = totalAlunos-1; i >= posicao; i-=1) {
+
+        for (int i = totalDeAlunos-1; i >= posicao; i-=1) {
             this.alunos[i + 1] = this.alunos[i];
         }
         
         this.alunos[posicao] = aluno;
-        this.totalAlunos++;
+        this.totalDeAlunos++;
     }
 
     @Override
@@ -60,10 +60,10 @@ public class Vetor implements IListaAlunos {
         if (!this.posicaoOcupada(posicao)) {
             throw new IllegalArgumentException("Posição inválida");
         }
-        for (int i = posicao; i < this.totalAlunos - 1; i++) {
+        for (int i = posicao; i < this.totalDeAlunos - 1; i++) {
             this.alunos[i] = this.alunos[i + 1];
         }
-        this.totalAlunos--;
+        this.totalDeAlunos--;
         
     }
 
@@ -83,7 +83,7 @@ public class Vetor implements IListaAlunos {
 
     @Override
     public int tamanho() {
-        return this.totalAlunos;
+        return this.totalDeAlunos;
     }
 
     @Override
@@ -94,18 +94,18 @@ public class Vetor implements IListaAlunos {
     @Override
     public String toString() {
         
-        if (this.totalAlunos == 0) {
+        if (this.totalDeAlunos == 0) {
             return "[]";
         }
         
         StringBuilder builder = new StringBuilder();
         builder.append("[");
         
-        for (int i = 0; i < totalAlunos -1; i++) {
+        for (int i = 0; i < totalDeAlunos -1; i++) {
             builder.append(this.alunos[i]);
             builder.append(", ");
         }
-        builder.append(this.alunos[this.totalAlunos -1]);
+        builder.append(this.alunos[this.totalDeAlunos -1]);
         builder.append("]");
         
         return builder.toString(); 
@@ -115,11 +115,21 @@ public class Vetor implements IListaAlunos {
     
     
     private boolean posicaoOcupada(int posicao) {
-        return posicao >= 0 && posicao < this.totalAlunos;
+        return posicao >= 0 && posicao < this.totalDeAlunos;
     }
     
     private boolean posicaoValida(int posicao) {
         return posicao >= 0 && posicao < this.alunos.length;
+    }
+    
+    private void garantaEspaco() {
+        if (this.totalDeAlunos == this.alunos.length) {
+            Aluno[] novoArray = new Aluno[this.alunos.length * 2];
+            for (int i = 0; i < this.alunos.length; i++) {
+                novoArray[i] = this.alunos[i];
+            }
+            this.alunos = novoArray;
+        }
     }
     
 }

@@ -18,6 +18,9 @@ import static org.junit.Assert.*;
  */
 public class VetorTest {
     
+    private static final int TOTAL = 200000;
+    
+    
     public VetorTest() {
     }
     
@@ -46,7 +49,6 @@ public class VetorTest {
         Aluno aluno = null;
         Vetor instance = new Vetor();
         instance.adicionaAluno(aluno);
-        // TODO review the generated test code and remove the default call to fail.
 
         assertTrue(instance.tamanho() == 1);
     }
@@ -156,6 +158,105 @@ public class VetorTest {
         
         assertEquals(expResult, result);
         
+        
+    }
+    
+    @Test
+    public void testAdicionarAlunos() {
+        
+        String textoDiferenca = "Adicionar "+TOTAL+" Alunos";
+        long tempoInicial = System.currentTimeMillis();
+        
+        Vetor instance = new Vetor();
+        
+        for (int i = 0; i < TOTAL; i++) {
+            Aluno aluno = new Aluno("Aluno "+(i+1));
+            instance.adicionaAluno(aluno);
+        }
+        
+        long tempoFinal = System.currentTimeMillis();
+        
+        exibirTempo(textoDiferenca, (tempoFinal-tempoInicial));
+
+        assertTrue(instance.tamanho() == TOTAL);
+
+    }
+    
+    @Test
+    public void testAdicionarAlunosNaPosicaoInicial() {
+       
+        String textoDiferenca = "Adicionar "+TOTAL+" Alunos na posiçao INICIAL";
+        long tempoInicial = System.currentTimeMillis();
+        
+        Vetor instance = new Vetor();
+        
+        for (int i = 0; i < TOTAL; i++) {
+            Aluno aluno = new Aluno("Aluno "+(i+1));
+            instance.adicionaAluno(0,aluno);
+        }
+        
+        long tempoFinal = System.currentTimeMillis();
+        
+        exibirTempo(textoDiferenca, (tempoFinal-tempoInicial));
+
+        assertTrue(instance.tamanho() == TOTAL);
+
+    }
+    
+    @Test
+    public void testAdicionarAlunosNaPosicaoMeio() {
+
+        String textoDiferenca = "Adicionar "+TOTAL+" Alunos na posiçao MEIO";
+        long tempoInicial = System.currentTimeMillis();
+        
+        Vetor instance = new Vetor();
+        
+        for (int i = 0; i < TOTAL; i++) {
+            Aluno aluno = new Aluno("Aluno "+(i+1));
+            instance.adicionaAluno(instance.tamanho()/2,aluno);
+        }
+        
+        long tempoFinal = System.currentTimeMillis();
+        
+        exibirTempo(textoDiferenca, (tempoFinal-tempoInicial));
+
+        assertTrue(instance.tamanho() == TOTAL);
+
+    }
+    
+    @Test
+    public void testAdicionarAlunosNaPosicaoFinal() {
+       
+        String textoDiferenca = "Adicionar "+TOTAL+" Alunos na posiçao FINAL";
+        long tempoInicial = System.currentTimeMillis();
+        
+        Vetor instance = new Vetor();
+        
+        for (int i = 0; i < TOTAL; i++) {
+            Aluno aluno = new Aluno("Aluno "+(i+1));
+            instance.adicionaAluno(instance.tamanho(),aluno);
+        }
+        
+        long tempoFinal = System.currentTimeMillis();
+        
+        exibirTempo(textoDiferenca, (tempoFinal-tempoInicial));
+
+        assertTrue(instance.tamanho() == TOTAL);
+
+    }
+
+    
+    private void exibirTempo(String texto, double diferencaTempo) {
+        
+        float tempoAtual;
+        tempoAtual = (float)(diferencaTempo / 1000) % 60;
+        
+        if (tempoAtual < 60) {
+            System.out.printf("%s -> tempo: %f segundos <-\n",texto,tempoAtual);
+        } else {
+            float minutos = (float)(diferencaTempo / 60000) % 60;
+            System.out.printf("%s -> tempo: %f minuto(s) <-\n",texto,minutos);
+        }
         
     }
     
