@@ -7,33 +7,36 @@ package repositorios;
 
 import java.util.ArrayList;
 import modelos.Produto;
+import estrutura.ListaLigada;
 /**
  *
  * @author alunofavip
  */
 public class RepositorioSistema implements RegrasRepositorioSistema {
 
-    private ArrayList<Produto> listaProdutos = new ArrayList();
-    
+    //private ArrayList<Produto> listaProdutos = new ArrayList();
+    private ListaLigada listaProdutos = new ListaLigada();
     
     @Override
     public void adicionarProduto(Produto produto) {
-        this.listaProdutos.add(produto);
+        this.listaProdutos.adiciona(produto);
     }
     
     @Override
     public Produto recuperarProdutoPeloCodigo(int codigo) {
     
-        Produto produtoProcurado = null;
-        for (Produto produtoAtual : listaProdutos) {
-            if (produtoAtual.getCodigo() == codigo) {
-                produtoProcurado = produtoAtual;
+        Produto objetoEncontrado = null;
+        
+        for (int i = 0; i < this.listaProdutos.tamanho(); i++) {
+            objetoEncontrado = (Produto)this.listaProdutos.pega(i);
+            
+            if (objetoEncontrado.getCodigo() == codigo) {
+                // achei
                 break;
             }
         }
         
-        return produtoProcurado;
-
+        return objetoEncontrado;
     }
 
     @Override
@@ -49,7 +52,7 @@ public class RepositorioSistema implements RegrasRepositorioSistema {
     }
     
     public int getTotalProdutos() {
-        return this.listaProdutos.size();
+        return this.listaProdutos.tamanho();
     }
 
 

@@ -47,12 +47,19 @@ public class RepositorioSistemaTest {
     public void testAdicionarProduto() {
         System.out.println("adicionarProduto");
         Produto produto = new Produto("NOTEBOOK", "...", 1000, 2000.5);
-        RepositorioSistema instance = new RepositorioSistema();
-        instance.adicionarProduto(produto);
-    
-        Produto produtoRecuperado = instance.recuperarProdutoPeloCodigo(1);
+        Produto produto2 = new Produto("NOTEBOOK", "...", 1000, 2000.5);
         
-        assertEquals(produto, produtoRecuperado);
+        RepositorioSistema instance = new RepositorioSistema();
+        
+        instance.adicionarProduto(produto);
+        instance.adicionarProduto(produto2);
+    
+        System.out.println(produto);
+        System.out.println(produto2);
+        
+        Produto produtoRecuperado = instance.recuperarProdutoPeloCodigo(2);
+        
+        assertEquals(produto2, produtoRecuperado);
     }
 
     @Test

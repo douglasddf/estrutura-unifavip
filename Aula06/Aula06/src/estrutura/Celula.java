@@ -10,7 +10,7 @@ package estrutura;
  * 
  * @author douglasfrari
  */
-public class Celula {
+class Celula {
     
     private Celula proxima;
     private Celula anterior;
