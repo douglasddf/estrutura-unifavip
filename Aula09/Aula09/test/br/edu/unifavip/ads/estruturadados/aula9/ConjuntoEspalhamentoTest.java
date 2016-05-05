@@ -72,23 +72,27 @@ public class ConjuntoEspalhamentoTest {
     public void testaTempoDePesquisaPorPalavraNoInicio() {
         long tempoInicial = System.currentTimeMillis();
         boolean temPalavra = false;
-        
+    
+               
         if (instanceConjuntoEspalhamento != null) {
              temPalavra = instanceConjuntoEspalhamento.contem(casoPalavraNoInicio);        
         } else if (instanceCollectionTradicional != null) {
             temPalavra = instanceCollectionTradicional.contains(casoPalavraNoInicio);
         }
+        
+
 
         long tempoFinal = System.currentTimeMillis();
         
         // calcula total de tempo gasto
-        System.out.printf("testaTempoDePesquisaPorPalavraNoInicio -> %3f ms%n", (tempoFinal - tempoInicial) / 1000d);
+        System.out.printf("testaTempoDePesquisaPorPalavraNoInicio -> %3f ms%n", 
+                (tempoFinal - tempoInicial) / 1000d);
         
         assertTrue(temPalavra);
     }
     
     
-        @Test
+    @Test
     public void testaTempoDePesquisaPorPalavraNoMeio() {
         long tempoInicial = System.currentTimeMillis();    
         boolean temPalavra = false;
