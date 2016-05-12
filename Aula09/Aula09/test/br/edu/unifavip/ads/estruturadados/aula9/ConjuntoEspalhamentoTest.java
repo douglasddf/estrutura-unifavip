@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class ConjuntoEspalhamentoTest {
     
-    private static final int MAXIMO = 200000;
+    private static final int MAXIMO = 100000;
     
     // ## estrutura otimizada para buscas ##
     private static ConjuntoEspalhamento instanceConjuntoEspalhamento = new ConjuntoEspalhamento();

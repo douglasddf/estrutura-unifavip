@@ -50,6 +50,8 @@ public class ConjuntoEspalhamento {
             tamanho--;
         }
     }
+    
+    
     public boolean contem(String palavra) {
         // implementação
         
